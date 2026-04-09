@@ -1,0 +1,50 @@
+{
+  "motos": [
+    {
+      "id": 1,
+      "marca": "Sport Fly",
+      "modelo": "Future",
+      "ano": null,
+      "consumo": 70,
+      "valor": 150000,
+      "imagem": "/uploads/moto-1775052395328-916328600.jpg",
+      "created_at": "2026-04-01T14:06:35.360Z",
+      "updated_at": "2026-04-01T14:06:35.360Z"
+    },
+    {
+      "id": 2,
+      "marca": "Yamaha",
+      "modelo": "TDM 850",
+      "ano": 2002,
+      "consumo": 18,
+      "valor": 20000,
+      "imagem": "/uploads/moto-1775052463963-11732634.jpg",
+      "created_at": "2026-04-01T14:07:43.963Z",
+      "updated_at": "2026-04-01T14:08:18.847Z"
+    },
+    {
+      "id": 3,
+      "marca": "Honda",
+      "modelo": "Moto corrida",
+      "ano": 2024,
+      "consumo": 7,
+      "valor": 1000000000,
+      "imagem": "/uploads/moto-1775068565028-146208819.jfif",
+      "created_at": "2026-04-01T18:36:05.053Z",
+      "updated_at": "2026-04-01T18:36:05.053Z"
+    },
+    {
+      "id": 4,
+      "marca": "harley",
+      "modelo": "teste",
+      "ano": 2001,
+      "consumo": 22,
+      "valor": 12000,
+      "imagem": "/uploads/moto-1775068893383-208972024.png",
+      "created_at": "2026-04-01T18:41:33.393Z",
+      "updated_at": "2026-04-01T18:41:33.393Z"
+    }
+  ],
+  "nextId": 5,
+  "ultimaAtualizacao": "2026-04-01T18:41:33.393Z"
+}
