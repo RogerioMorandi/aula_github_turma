@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Força o Grid em 6 colunas */
+    .grid { 
+        display: grid !important; 
+        grid-template-columns: repeat(6, 1fr) !important; 
+        gap: 15px !important; 
+        margin-top: 2rem;
+    }
+
+    /* Ajusta o Card para não estourar o tamanho */
+    .card { 
+        background: white; 
+        border-radius: 12px; 
+        overflow: hidden; 
+        border: 1px solid #e5e7eb; 
+        display: flex; 
+        flex-direction: column;
+        min-width: 0; 
+    }
+
+    .card img { 
+        width: 100% !important; 
+        height: 120px !important; 
+        object-fit: cover !important; 
+    }
+
+    .card-content { padding: 10px; text-align: center; }
+    
+    .card h3 { 
+        font-size: 0.8rem; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        margin-bottom: 5px;
+    }
+
+    .price { 
+        color: #059669; 
+        font-weight: bold; 
+        font-size: 0.9rem; 
+        background: #ecfdf5;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .actions { display: flex; gap: 5px; padding: 5px; }
+    
+    .btn { 
+        flex: 1; 
+        padding: 5px; 
+        font-size: 0.75rem; 
+        color: white; 
+        text-decoration: none; 
+        border-radius: 6px; 
+        text-align: center; 
+    }
+
+    .btn-edit { background: #f59e0b; }
+    .btn-danger { background: #ef4444; }
+    .btn-primary { background: #4f46e5; padding: 10px 20px; }
+
+    .header-main { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb; }
+    .stat-card h4 { font-size: 0.8rem; color: #6b7280; text-transform: uppercase; margin: 0; }
+    .stat-card p { font-size: 1.5rem; font-weight: bold; margin: 5px 0 0 0; }
+    
+    .card-image { position: relative; }
+    .badge-id { position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.5); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.6rem; }
+
+    /* Responsividade básica para não quebrar no celular */
+    @media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, 1fr) !important; } }
+    @media (max-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr) !important; } }
+</style>
+
+<header class="header-main">
+    <div>
+        <h1>📦 Gestão de Inventário</h1>
+        <p>Visualize e gerencie seus produtos.</p>
+    </div>
+    <a href="{{ url_for('add_product') }}" class="btn btn-primary">+ Novo Produto</a>
+</header>
+
+<section class="dashboard">
+    <div class="stat-card">
+        <h4>Patrimônio Total</h4>
+        <p>R$ {{ "%.2f"|format(total) }}</p>
+    </div>
+    <div class="stat-card">
+        <h4>Itens em Estoque</h4>
+        <p>{{ products|length }} unidades</p>
+    </div>
+</section>
+
+<div class="grid">
+    {% for p in products %}
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='uploads/' + p.image) }}" alt="{{ p.name }}">
+            <span class="badge-id">ID: {{ p.id[:5] }}</span>
+        </div>
+        
+        <div class="card-content">
+            <h3>{{ p.name }}</h3>
+            <span class="price">R$ {{ "%.2f"|format(p.price) }}</span>
+            
+            <div class="actions">
+                <a href="{{ url_for('edit_product', id=p.id) }}" class="btn btn-edit">✏️</a>
+                <a href="{{ url_for('delete', id=p.id) }}" class="btn btn-danger" onclick="return confirm('Excluir?')">🗑️</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: white; border-radius: 12px; border: 2px dashed #e5e7eb;">
+        <p>Nenhum produto cadastrado.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

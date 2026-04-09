@@ -1,0 +1,110 @@
+/* 1. Configurações Globais */
+:root {
+    --primary: #4f46e5;
+    --bg: #f3f4f6;
+    --white: #ffffff;
+    --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: sans-serif;
+    background: var(--bg);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 2. O GRID (A parte que coloca um ao lado do outro) */
+.grid {
+    display: grid !important;
+    /* FORÇA 6 COLUNAS IGUAIS */
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 15px !important;
+    width: 100%;
+}
+
+/* 3. O CARD (O quadradinho de cada produto) */
+.card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Impede que o card empurre a coluna */
+}
+
+.card img {
+    width: 100%;
+    height: 120px; /* Foto menor para caber nas 6 colunas */
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 10px;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price {
+    color: #059669;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: block;
+    margin: 5px 0;
+}
+
+/* 4. BOTÕES */
+.actions {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}
+
+.btn {
+    flex: 1;
+    padding: 5px;
+    font-size: 0.7rem;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: white;
+}
+
+.btn-primary { background: var(--primary); }
+.btn-edit { background: #f59e0b; }
+.btn-danger { background: #ef4444; }
+
+/* 5. DASHBOARD (KPIs) */
+.dashboard {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+    border: 1px solid var(--border);
+}
+
+/* 6. HEADER */
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
